@@ -5,7 +5,6 @@ from random import sample
 
 class DrawOneBST(Scene):
     def construct(self):
-        #arrows, circles, _ = get_bst(BST(sample(range(100), 30)))
-        arrows, circles, _ = get_bst(BST([1, 2]))
+        arrows, circles, _ = get_bst(BST(sample(range(100), 30)))
         self.add(*arrows.values(), *circles.values())
 
