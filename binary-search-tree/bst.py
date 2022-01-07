@@ -43,3 +43,28 @@ class BST:
                 return node
         
         return search_helper(self.root, key), path[:-1]
+
+    def delete(self, key):
+        """Deletes the node with the given key from the tree"""
+        parent, temp, is_left_child = None, self.root, False
+        while temp.key != key:
+            parent = temp
+            if key < temp.key:
+                is_left_child = True
+                temp = temp.left
+            else:
+                temp = temp.right
+        
+        if temp.left is None and temp.right is None:
+            if parent is None:
+                self.root = None
+                return
+            if is_left_child:
+                parent.left = None
+            else:
+                parent.right = None
+        
+        elif temp.left is None or temp.right is None:
+            if parent is None:
+                self.root = temp.left 
+        

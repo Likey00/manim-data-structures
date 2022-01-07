@@ -3,7 +3,7 @@ from manim import *
 from collections import defaultdict
 from math import inf
 
-def get_bst(bst: BST, left=-7, width=14, top=4, height=8):
+def get_bst(bst: BST, left=-7, width=14, top=4, height=8, extra_space_at_top=False):
     if bst.root is None:
         return {}, {}, 0
     
@@ -83,10 +83,13 @@ def get_bst(bst: BST, left=-7, width=14, top=4, height=8):
 
     num_cols = max(relative_positions.values()) - min(relative_positions.values()) + 1
     horiz_increment = width / (num_cols+1)
-    vert_increment = height / (get_depth(bst.root)+1)
+    vert_increment = height / (get_depth(bst.root)+1+extra_space_at_top)
     scale_factor = min(horiz_increment, vert_increment)
     radius = scale_factor * 0.375
     minimum_position = min(relative_positions.values())
+
+    if extra_space_at_top:
+        top -= vert_increment
 
     circles = {}
 
